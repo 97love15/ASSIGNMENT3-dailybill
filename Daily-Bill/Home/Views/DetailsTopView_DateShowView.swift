@@ -1,0 +1,64 @@
+//
+//  DetailsTopView_DateShowView.swift
+//  Daily-Bill
+//
+//  CCreated by Jackey on 2022/05/10.
+//
+
+import UIKit
+
+class DetailsTopView_DateShowView: UIView {
+
+    /*
+    // Only override draw() if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func draw(_ rect: CGRect) {
+        // Drawing code
+    }
+    */
+
+    var titleLabel: UILabel?
+    private var _title: String = ""
+    var title: String{
+        set{
+            _title = newValue
+
+            _title = _title.appending("")
+            let att: NSMutableAttributedString = NSMutableAttributedString.init(string: _title )
+            att.addAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17, weight: .medium)], range: NSRange.init(location: (_title.count) - 1, length: 1))
+            self.titleLabel?.attributedText = att
+
+        }
+        get{
+            return _title
+        }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+
+     // MARK: - SetupUI
+
+    func setupUI() -> Void {
+
+        self.titleLabel = UILabel.init()
+        self.titleLabel?.text = "xxmonth："
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        self.titleLabel?.textColor = .white
+        self.titleLabel?.isUserInteractionEnabled = true
+        self.addSubview(self.titleLabel ?? UIView.init())
+        self.titleLabel?.snp.makeConstraints({ (make) in
+            make.height.equalTo(30)
+            make.centerY.equalTo(self)
+            make.left.equalToSuperview()
+        })
+    }
+
+}
+
